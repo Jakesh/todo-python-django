@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    Logged In as {{ user.username }}
+    <a href="{% url 'currentTodos' %}">Current</a>
+    <a href="{% url 'createTodos' %}">Create</a>
+    <a href="{% url 'completedTodos' %}">Completed</a>
+    <form action="{% url 'logoutUser' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    {% else %}
+    <a href="{% url 'signupUser' %}">Signup</a>
+    <a href="{% url 'loginUser' %}">Login</a>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

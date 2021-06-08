@@ -1,0 +1,19 @@
+{% extends 'todo/base.html' %}
+{% block content %}
+    <h1>Completed TODOs</h1>
+    <ul>
+        {% for todo in todos %}
+        <li>
+            {% if todo.important %}
+            <b>{{ todo.title }}</b>
+            {% else %}
+            {{ todo.title }}
+            {% endif %}
+            {% if todo.memo %}
+            -{{ todo.memo }}
+            {% endif %}
+            {{ todo.dateCompleted|date:'M j Y H:i' }}
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
